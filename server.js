@@ -6,20 +6,20 @@ var app = express();
 app.use(morgan('combined'));
 
 var articles = {
-    articleOne: {
+    'article-one': {
         title: "Article One | Uzair",
         heading: "Article First Heading",
         date: "Sept 5, 2017",
         content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur sapien eget ipsum porttitor ultricies. Morbi aliquet vestibulum interdum. Nam id augue in magna consectetur tristique. Pellentesque tempor pharetra libero a ultrices. Donec a semper lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum mattis quam at quam pulvinar, ac auctor lacus convallis. Morbi pharetra mi vitae turpis fermentum, sed ullamcorper nisl hendrerit. Nullam egestas diam justo, vitae ultricies lectus tincidunt quis. In consequat in justo non posuere. Morbi turpis leo, mollis quis mattis sit amet, accumsan eleifend quam. Quisque non magna augue. Integer maximus luctus libero quis faucibus. Suspendisse posuere quis ligula nec ullamcorper. Mauris ut dolor eu orci accumsan hendrerit ut quis justo..</p>`
         
     },
-    articleTwo: {
+    'article-two': {
         title: "Article Two | Uzair",
         heading: "Article Second Heading",
         date: "Sept 6, 2017",
         content: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur sapien eget ipsum porttitor ultricies. Morbi aliquet vestibulum interdum. Nam id augue in magna consectetur tristique. Pellentesque tempor pharetra libero a ultrices. Donec a semper lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum mattis quam at quam pulvinar, ac auctor lacus convallis. Morbi pharetra mi vitae turpis fermentum, sed ullamcorper nisl hendrerit. Nullam egestas diam justo, vitae ultricies lectus tincidunt quis. In consequat in justo non posuere. Morbi turpis leo, mollis quis mattis sit amet, accumsan eleifend quam. Quisque non magna augue. Integer maximus luctus libero quis faucibus. Suspendisse posuere quis ligula nec ullamcorper. Mauris ut dolor eu orci accumsan hendrerit ut quis justo..</p>`
     },
-    articleThree: {
+    'article-three': {
                 title: "Article Three | Uzair",
                 heading: "Article Third Heading",
                 date: "Sept 7, 2017",
@@ -68,18 +68,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articles.articleOne));
+app.get('/:articleName', function (req, res) {
+  var articleName = req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
-
-app.get('/article-two', function (req, res) {
-  res.send(createTemplate(articles.articleTwo));
-});
-
-app.get('/article-three', function (req, res) {
-  res.send(createTemplate(articles.articleThree));
-});
-
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
