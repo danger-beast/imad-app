@@ -9,8 +9,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res){
-    res.sendFile('This is article one.');
+app.get('/article-one', function (req, res) {
+  res.send("This is first article");
 });
 
 app.get('/ui/style.css', function (req, res) {
